@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de notas</title>
+</head>
+<body>
+    <h1>Calculadora de notas</h1>
+    <form id="formulario">
+        <label for="matematica">Nota de Matemática:</label>
+        <input type="number" id="matematica" required>
+        <br>
+        <label for="lengua">Nota de Lengua:</label>
+        <input type="number" id="lengua" required>
+        <br>
+        <label for="efsi">Nota de EFSI:</label>
+        <input type="number" id="efsi" required>
+        <br>
+        <button type="button" onclick="calcularPromedio()">Calcular Promedio</button>
+        <button type="button" onclick="mostrarMateriaMayorNota()">Mostrar Materia con Mayor Nota</button>
+    </form>
+    <div id="resultado"></div>
+    <script src="funciones.js"></script>
+</body>
+</html>
