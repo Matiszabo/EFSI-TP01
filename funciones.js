@@ -1,15 +1,31 @@
-const materias = (matematica, lengua,efsi );
-function validarNota(inputId) {
-    let input = document.getElementById(inputId);
-    let valor = parseFloat(inputId.valor);
-    
-    if (  valor< 1 || valor > 10) {
-        input.body.style.backgroudColor = "red";
-    } else {
-        input.body.style.backgroundColor = "green";
-    }
-}
 function calcularPromedio() {
+    const notaMatematica = parseFloat(document.getElementById('matematica').value);
+    const notaLengua = parseFloat(document.getElementById('lengua').value);
+    const notaEFSI = parseFloat(document.getElementById('efsi').value);
+  
+    if (notaMatematica >= 1 && notaMatematica <= 10 &&
+        notaLengua >= 1 && notaLengua <= 10 &&
+        notaEFSI >= 1 && notaEFSI <= 10) {
+      const promedio = (notaMatematica + notaLengua + notaEFSI) / 3;
+  
+      const resultadoDiv = document.getElementById('resultado');
+      resultadoDiv.textContent = `El promedio del alumno es: ${promedio}`;
+      resultadoDiv.style.color = promedio >= 6 ? 'green' : 'red';
+    } else {
+      alert('Las notas deben estar entre 1 y 10');
+    }
+  }
+
+  function validarNota(ingresado) {
+    let nota = parseFloat(ingresado.value);
+    if (nota >= 1 && nota <= 10) {
+      ingresado.style.color = nota >= 0 && nota <=10? "green" : "red" ;
+    } else {
+      ingresado.style.color = "red";
+    }
+  }
+
+function mostrarMateriaMayorNota() {
     let matematica = parseFloat(document.getElementById('matematica').value);
     let lengua = parseFloat(document.getElementById('lengua').value);
     let efsi = parseFloat(document.getElementById('efsi').value);
@@ -19,7 +35,12 @@ function calcularPromedio() {
         return;
     }
 
-    let promedio = (matematica + lengua + efsi) / 3;
+    let maxNota = Math.max(matematica, lengua, efsi);
+    let materias = [];
+    if (maxNota === matematica) materias.push("Matemática");
+    if (maxNota === lengua) materias.push("Lengua");
+    if (maxNota === efsi) materias.push("EFSI");
+
     let resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.innerHTML = `El promedio del alumno es: <span style="color:${promedio >= 6 ? 'green' : 'red'}">${promedio.toFixed(2)}</span>`;
+    resultadoDiv.innerHTML += `<br><span style="color:black">La(s) materia(s) con mayor nota es(son): </span><span style="color:blue">${materias.join(', ')}</span>`;
 }
